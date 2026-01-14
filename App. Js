@@ -1,0 +1,77 @@
+import React, { useState, useEffect } from 'react';
+import { Heart, Users, Wind, Zap } from 'lucide-react';
+
+const BioSyncHome = () => {
+  const [pulse, setPulse] = useState(72);
+  const [resonance, setResonance] = useState(85); // 0-100 scale of "alignment"
+
+  return (
+    <div className="min-h-screen bg-[#050510] text-slate-200 font-sans overflow-hidden flex flex-col">
+      
+      {/* Top Navigation - Minimalist */}
+      <nav className="p-6 flex justify-between items-center">
+        <div className="flex flex-col">
+          <span className="text-[10px] tracking-[0.4em] uppercase text-indigo-400 font-bold">BioSync</span>
+          <span className="text-xs text-slate-500">Welcome back, Weaver</span>
+        </div>
+        <div className="w-10 h-10 rounded-full border border-indigo-500/30 flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-amber-400 animate-ping"></div>
+        </div>
+      </nav>
+
+      {/* Central Visualizer: The Vital Bloom */}
+      <main className="flex-1 flex flex-col items-center justify-center relative">
+        {/* Ambient Glows */}
+        <div className="absolute w-64 h-64 bg-indigo-600/20 rounded-full blur-[100px] -z-10 animate-pulse"></div>
+        <div className="absolute w-48 h-48 bg-rose-500/10 rounded-full blur-[80px] translate-x-12 -z-10"></div>
+
+        {/* The Generative Heart */}
+        <div 
+          className="relative w-48 h-48 flex items-center justify-center transition-all duration-500"
+          style={{ transform: `scale(${1 + (pulse - 60) / 400})` }}
+        >
+          {/* Layered rings simulating the "Rose-Gold" pulse */}
+          <div className="absolute inset-0 border border-amber-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+          <div className="absolute inset-4 border border-indigo-400/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+          
+          <div className="flex flex-col items-center">
+            <span className="text-5xl font-extralight tracking-tighter text-white">{pulse}</span>
+            <span className="text-[10px] uppercase tracking-widest text-indigo-300 mt-1">BPM Pulse</span>
+          </div>
+        </div>
+
+        {/* Resilience Metric */}
+        <div className="mt-12 text-center">
+          <p className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-2">Current Resonance</p>
+          <div className="h-1 w-48 bg-slate-800 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-indigo-500 to-amber-400 transition-all duration-1000"
+              style={{ width: `${resonance}%` }}
+            ></div>
+          </div>
+          <p className="text-[11px] italic text-slate-400 mt-3">"Your rhythm is steady. The Village feels your calm."</p>
+        </div>
+      </main>
+
+      {/* Bottom Action Dock */}
+      <footer className="p-8 grid grid-cols-3 gap-4">
+        <button className="flex flex-col items-center p-4 bg-slate-900/40 rounded-2xl border border-white/5 hover:border-indigo-500/50 transition group">
+          <Wind className="text-indigo-400 mb-2 group-hover:scale-110 transition" size={20} />
+          <span className="text-[10px] uppercase tracking-tighter">Breathe</span>
+        </button>
+        
+        <button className="flex flex-col items-center p-4 bg-slate-900/40 rounded-2xl border border-white/5 hover:border-amber-500/50 transition group">
+          <Users className="text-amber-400 mb-2 group-hover:scale-110 transition" size={20} />
+          <span className="text-[10px] uppercase tracking-tighter">Village</span>
+        </button>
+
+        <button className="flex flex-col items-center p-4 bg-slate-900/40 rounded-2xl border border-white/5 hover:border-rose-500/50 transition group">
+          <Zap className="text-rose-400 mb-2 group-hover:scale-110 transition" size={20} />
+          <span className="text-[10px] uppercase tracking-tighter">Focus</span>
+        </button>
+      </footer>
+    </div>
+  );
+};
+
+export default BioSyncHome;
